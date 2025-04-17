@@ -1,21 +1,15 @@
 # database.py
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from models import Base
 
-engine = create_engine("sqlite:///rpg_misiones.db")
+# Puedes usar SQLite para pruebas locales, pero puedes cambiar la URL para PostgreSQL, MySQL, etc.
+DATABASE_URL = "sqlite:///./vuelos.db"
+
+# Crear el motor de conexión
+engine = create_engine(
+    DATABASE_URL,
+    connect_args={"check_same_thread": False}  # Solo necesario para SQLite
+)
+
+# Crear una sesión de base de datos
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
-
-def crear_base_datos():
-    Base.metadata.create_all(bind=engine)
-
-# 🚨 Esta línea permite crear las tablas cuando ejecutes este archivo
-if __name__ == "__main__":
-    crear_base_datos()

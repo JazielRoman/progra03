@@ -1,48 +1,31 @@
-from sqlalchemy import Column, Integer, String, Text, Enum, DateTime, ForeignKey
-from sqlalchemy.orm import declarative_base, relationship
+# models.py
 from datetime import datetime
+from sqlalchemy import Column, String, Enum, DateTime, Integer
+from sqlalchemy.ext.declarative import declarative_base
+import enum
 
-# Se define la base del modelo ORM
 Base = declarative_base()
 
-class Mision(Base):
-    """
-    Representa una misión dentro del juego.
-    """
-    __tablename__ = 'misiones'
-    
-    id = Column(Integer, primary_key=True)  # Identificador único de la misión
-    nombre = Column(String(50), nullable=False)  # Nombre de la misión (obligatorio)
-    descripcion = Column(Text, nullable=True)  # Descripción opcional de la misión
-    experiencia = Column(Integer, default=0)  # XP de recompensa, por defecto 0
-    estado = Column(Enum('pendiente', 'completada', name='estados'), nullable=False)  # Estado de la misión
-    fecha_creacion = Column(DateTime, default=datetime.now)  # Fecha de creación con valor por defecto
+class EstadoVuelo(str, enum.Enum):
+    programado = "programado"
+    emergencia = "emergencia"
+    retrasado = "retrasado"
 
-    # Relación con MisionPersonaje
-    personajes = relationship("MisionPersonaje", back_populates="mision")
+class Vuelo(Base):
+    __tablename__ = "vuelos"
 
-class Personaje(Base):
-    """
-    Representa un personaje dentro del juego.
-    """
-    __tablename__ = 'personajes'
-    
-    id = Column(Integer, primary_key=True)
-    nombre = Column(String(30), nullable=False)
-    experiencia = Column(Integer, default=0)  # Añadido este campo
-    misiones = relationship("MisionPersonaje", back_populates="personaje")
-    
-class MisionPersonaje(Base):
-    """
-    Tabla intermedia para la relación muchos a muchos entre Personaje y Mision.
-    También permite manejar el orden FIFO de las misiones.
-    """
-    __tablename__ = 'misiones_personaje'
-    
-    personaje_id = Column(Integer, ForeignKey('personajes.id'), primary_key=True)
-    mision_id = Column(Integer, ForeignKey('misiones.id'), primary_key=True)
-    orden = Column(Integer)  # Para mantener el orden FIFO de las misiones
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    codigo = Column(String, unique=True, nullable=False)
+    estado = Column(Enum(EstadoVuelo), nullable=False)
+    hora = Column(DateTime, default=datetime.utcnow)
+    origen = Column(String, nullable=False)
+    destino = Column(String, nullable=False)
 
-    # Relaciones inversas
-    personaje = relationship("Personaje", back_populates="misiones")
-    mision = relationship("Mision", back_populates="personajes")
+    def __repr__(self):
+        return f"<Vuelo {self.codigo} | {self.estado} | {self.hora}>"
+
+class Nodo:
+    def __init__(self, vuelo: Vuelo):
+        self.vuelo = vuelo
+        self.anterior = None
+        self.siguiente = None
