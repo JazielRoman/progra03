@@ -2,11 +2,11 @@
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
 from datetime import datetime
-from models import *
+from models import Vuelo, EstadoVuelo
 from database import get_db, crear_base_datos
 from lista_vuelos import ListaVuelos
 
-# Crear tablas si aún no existen
+# Crea las tablas en la base de datos si aún no existen
 crear_base_datos()
 
 app = FastAPI()
@@ -15,12 +15,13 @@ lista = ListaVuelos()
 @app.post("/vuelos")
 def crear_vuelo(
     codigo: str,
-    estado: str,
+    estado: EstadoVuelo,
     hora: datetime,
     origen: str,
     destino: str,
     db: Session = Depends(get_db)
 ):
+    # Crea y persiste el nuevo vuelo
     vuelo = Vuelo(
         codigo=codigo,
         estado=estado,
@@ -32,7 +33,8 @@ def crear_vuelo(
     db.commit()
     db.refresh(vuelo)
 
-    if estado == "emergencia":
+    # Inserta en la lista con prioridad
+    if estado == EstadoVuelo.emergencia:
         lista.insertar_al_frente(vuelo, db)
     else:
         lista.insertar_al_final(vuelo, db)
@@ -62,7 +64,11 @@ def listar_vuelos():
     return {"total": lista.longitud(), "vuelos": lista.listar_todos()}
 
 @app.post("/vuelos/insertar")
-def insertar_en_posicion(codigo: str, posicion: int, db: Session = Depends(get_db)):
+def insertar_en_posicion(
+    codigo: str,
+    posicion: int,
+    db: Session = Depends(get_db)
+):
     vuelo = db.query(Vuelo).filter(Vuelo.codigo == codigo).first()
     if not vuelo:
         raise HTTPException(status_code=404, detail="Vuelo no encontrado")
@@ -70,7 +76,10 @@ def insertar_en_posicion(codigo: str, posicion: int, db: Session = Depends(get_d
     return {"message": f"Vuelo {codigo} insertado en posición {posicion}"}
 
 @app.delete("/vuelos/{posicion}")
-def eliminar_vuelo(posicion: int, db: Session = Depends(get_db)):
+def eliminar_vuelo(
+    posicion: int,
+    db: Session = Depends(get_db)
+):
     try:
         vuelo = lista.eliminar_de_posicion(posicion, db)
     except IndexError:
@@ -78,7 +87,11 @@ def eliminar_vuelo(posicion: int, db: Session = Depends(get_db)):
     return {"message": f"Vuelo {vuelo.codigo} eliminado de la posición {posicion}"}
 
 @app.patch("/vuelos/reordenar")
-def reordenar_vuelo(origen: int, destino: int, db: Session = Depends(get_db)):
+def reordenar_vuelo(
+    origen: int,
+    destino: int,
+    db: Session = Depends(get_db)
+):
     try:
         lista.reordenar(origen, destino, db)
     except IndexError:
