@@ -2,9 +2,9 @@
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
 from datetime import datetime
-from models import Vuelo, EstadoVuelo
-from database import get_db, crear_base_datos
-from lista_vuelos import ListaVuelos
+from models import *
+from database import *
+from lista_vuelos import *
 
 # Crea las tablas en la base de datos si aún no existen
 crear_base_datos()

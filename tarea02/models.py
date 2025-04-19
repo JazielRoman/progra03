@@ -1,16 +1,19 @@
 # models.py
 from datetime import datetime
 from sqlalchemy import Column, String, Enum, DateTime, Integer
-from sqlalchemy.orm import declarative_base
+from sqlalchemy.orm import declarative_base  # CORREGIDO
 import enum
 
+# Declaración de la base para SQLAlchemy
 Base = declarative_base()
 
+# Enumeración para los estados del vuelo
 class EstadoVuelo(str, enum.Enum):
     programado = "programado"
     emergencia = "emergencia"
     retrasado = "retrasado"
 
+# Modelo ORM de la tabla "vuelos"
 class Vuelo(Base):
     __tablename__ = "vuelos"
 
@@ -24,6 +27,7 @@ class Vuelo(Base):
     def __repr__(self):
         return f"<Vuelo {self.codigo} | {self.estado} | {self.hora}>"
 
+# Nodo para estructura de lista enlazada (no persiste en DB)
 class Nodo:
     def __init__(self, vuelo: Vuelo):
         self.vuelo = vuelo
