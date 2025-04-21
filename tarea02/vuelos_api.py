@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from typing import List
-from modelos import Vuelo, EstadoVuelo
-from lista_vuelos import ListaVuelos
+from models import *
+from lista_vuelos import *
 
 router = APIRouter()
 lista_vuelos = ListaVuelos()
