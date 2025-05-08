@@ -1,9 +1,60 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 OPR/118.0.0.0 (Edition 360-1)" version="26.2.14">
   <diagram name="Página-1" id="uZH_6gYwciRfXKnqf7xm">
-    <mxGraphModel>
+    <mxGraphModel dx="818" dy="440" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="FIQ8STjAmikblwq0WpSD-1" value="Figura" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=47.2;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;" vertex="1" parent="1">
+          <mxGeometry x="40" y="320" width="119" height="102.2" as="geometry" />
+        </mxCell>
+        <mxCell id="FIQ8STjAmikblwq0WpSD-2" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="FIQ8STjAmikblwq0WpSD-1">
+          <mxGeometry y="47.2" width="119" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="FIQ8STjAmikblwq0WpSD-3" value="+dibujar()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="FIQ8STjAmikblwq0WpSD-1">
+          <mxGeometry y="55.2" width="119" height="47" as="geometry" />
+        </mxCell>
+        <mxCell id="FIQ8STjAmikblwq0WpSD-4" value="RectanguloViejo" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=47.2;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="80" width="160" height="102.2" as="geometry" />
+        </mxCell>
+        <mxCell id="FIQ8STjAmikblwq0WpSD-5" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="FIQ8STjAmikblwq0WpSD-4">
+          <mxGeometry y="47.2" width="160" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="FIQ8STjAmikblwq0WpSD-6" value="+mostrar()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="FIQ8STjAmikblwq0WpSD-4">
+          <mxGeometry y="55.2" width="160" height="47" as="geometry" />
+        </mxCell>
+        <mxCell id="FIQ8STjAmikblwq0WpSD-7" value="RectanguloAdapter" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=45.333333333333336;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="263" height="143.33333333333334" as="geometry" />
+        </mxCell>
+        <mxCell id="FIQ8STjAmikblwq0WpSD-8" value="-viejo: RectanguloViejo" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="FIQ8STjAmikblwq0WpSD-7">
+          <mxGeometry y="45.333333333333336" width="263" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="FIQ8STjAmikblwq0WpSD-9" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="FIQ8STjAmikblwq0WpSD-7">
+          <mxGeometry y="90.33333333333334" width="263" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="FIQ8STjAmikblwq0WpSD-10" value="+dibujar()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="FIQ8STjAmikblwq0WpSD-7">
+          <mxGeometry y="98.33333333333334" width="263" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="FIQ8STjAmikblwq0WpSD-11" value="" style="curved=1;dashed=1;startArrow=block;startSize=16;startFill=0;endArrow=none;rounded=0;entryX=0.008;entryY=0.997;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="FIQ8STjAmikblwq0WpSD-1" target="FIQ8STjAmikblwq0WpSD-10">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+            <mxPoint x="90" y="270" as="sourcePoint" />
+            <mxPoint x="320" y="310" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FIQ8STjAmikblwq0WpSD-12" value="usa" style="curved=1;startArrow=none;endArrow=open;endSize=12;rounded=0;exitX=1;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="FIQ8STjAmikblwq0WpSD-7" target="FIQ8STjAmikblwq0WpSD-4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="360" y="80" />
+            </Array>
+            <mxPoint x="390" y="300" as="sourcePoint" />
+            <mxPoint x="470" y="50" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FIQ8STjAmikblwq0WpSD-13" value="Text" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="FIQ8STjAmikblwq0WpSD-12">
+          <mxGeometry x="-0.299" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
