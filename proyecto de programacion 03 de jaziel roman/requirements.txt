@@ -1,0 +1,7 @@
+streamlit
+networkx
+matplotlib
+pandas
+reportlab
+folium
+streamlit-folium
